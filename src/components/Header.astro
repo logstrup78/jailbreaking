@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro"
+const {pathname} = Astro.url;
+
+---
+<Layout>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" class={pathname === "/" ? "active" : ""}>Start</a></li>
+            <li><a href="/id" class={pathname === "/id" ? "active" : ""}>ID</a></li>
+            <li><a href="/questions" class={pathname === "/questions" ? "active" : ""}>spørgeskema</a></li>
+            <li><a href="/jailbreak" class={pathname === "/jailbreak" ? "active" : ""}>Jailbreak</a></li>
+            <li><a href="/refleksion" class={pathname === "/refleksion" ? "active" : ""}>refleksion</a></li>
+            <li><a href="/grupperefleksion" class={pathname === "/grupperefleksion" ? "active" : ""}>grupperefleksion</a></li>
+            <li><a href="/afslut" class={pathname === "/afslut" ? "active" : ""}>Afslutning</a></li>
+        </ul>
+    </nav>
+</header>
+</Layout>
+
+<style>
+    header{
+        width: 100%;
+        height: 80px;
+        background-color: #D9DDFE;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+    }
+    nav ul{
+        display: flex;
+        gap: 30px;
+        margin: 0;
+  padding: 0;
+  list-style: none;
+    }
+    
+a{
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+    nav a.active{
+        border-bottom: 1px solid #333;
+    }
+</style>

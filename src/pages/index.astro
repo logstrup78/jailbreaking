@@ -1,0 +1,92 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import Continue from "../components/Continue.astro";
+
+---
+
+<Layout title="Velkommen">
+  <Header />
+  <div class="container">
+    <main>
+      <h1>Velkommen</h1>
+      <p>
+        Du skal nu igennem et kort forløb, hvor du besvarer spørgsmål og løser
+        små opgaver, der handler om at udfordre og omgå en AI-models indbyggede
+        sikkerhed. For at kunne følge dine besvarelser undervejs skal du først
+        generere et unikt ID.<br> Dette ID bruges kun til at koble dine svar sammen
+        på tværs af opgaverne. Dine besvarelser vil altid blive behandlet
+        anonymt – vi kan ikke se, hvem du er, kun dit ID. Inden du går i gang,
+        skal du markere afkrydsningsfeltet herunder, hvis du giver samtykke til,
+        at vi må bruge dine besvarelser i vores undersøgelse.<br> Når du har givet
+        samtykke og oprettet dit ID, bliver du guidet videre til de enkelte
+        sider med opgaver og spørgsmål. Øvelsen afsluttes automatisk, når du har
+        gennemført alle trin.
+      </p>
+    </main>
+    <div class="check_box">
+      <input id="check" type="checkbox" />
+      <p>
+        Jeg giver hermed samtykke til at EK må benytte mine resultater til
+        forskning
+      </p>
+    </div>
+    <Continue id="btn" href="/id" tekst="Gå videre"/>
+  </div>
+
+  
+  <Footer />
+</Layout>
+
+
+<style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    main {
+      padding: 2%;
+      max-width: 800px;
+    }
+     
+    .check_box {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      margin-bottom: 2rem;
+    }
+    .check_box p {
+      margin-left: 20px;
+      font-size: 12px;
+	  line-height: 1rem;
+    }
+    input {
+      height: 40px;
+      width: 40px;
+    }
+    #check {
+      accent-color: #fca28a;
+    }
+  </style>
+
+<script>
+  const checkbox = document.getElementById("check");
+  const link = document.getElementById("btn");
+
+ if (checkbox instanceof HTMLInputElement && link instanceof HTMLAnchorElement) {
+    const sync = () => {
+      const disabled = !checkbox.checked;
+      link.classList.toggle('disabled', disabled);
+      link.setAttribute('aria-disabled', String(disabled));
+      link.tabIndex = disabled ? -1 : 0; 
+    };
+
+    sync(); 
+    checkbox.addEventListener('change', sync);
+  } else {
+    console.warn('Mangler #check eller #btn i DOM.');
+  }
+</script>

@@ -1,0 +1,61 @@
+---
+import Header from "../components/Header.astro";
+import Continue from "../components/Continue.astro";
+import Layout from "../layouts/Layout.astro";
+import Idgenerator from "../components/Idgenerator.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+  <Header />
+
+  <div class="container">
+    <main>
+      <h1>Generér ID</h1>
+      <p>
+        For at gennemføre øvelsen skal du have et personligt ID. ID’et bruges
+        til at knytte dine svar og opgaver sammen, så vi kan analysere
+        resultaterne bagefter.
+      </p>
+      <ol>
+        <li>Dit ID er helt anonymt og kan ikke spores tilbage til dig.</li>
+        <li>Gem dit ID – du skal bruge det gennem hele øvelsen.</li>
+        <li>Når du er klar, trykker du på knappen herunder for at generere dit ID.</li>
+      </ol>
+      <p>Når du har fået dit ID, kan du fortsætte til den første opgave.</p>
+    </main>
+
+    <Idgenerator />
+    <Continue tekst="Gå videre" href="/questions"/>    
+
+  </div>
+  <Footer />
+  </Layout>
+
+
+
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    main {
+      padding: 2%;
+      max-width: 800px;
+      margin-bottom: 2rem;
+    }
+    
+  </style>
+
+  
+  
+  <script>
+
+
+
+
+  </script>
+  
+
