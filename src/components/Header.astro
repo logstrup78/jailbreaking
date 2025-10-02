@@ -1,26 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro"
 const {pathname} = Astro.url;
+const { current } = Astro.props; 
 
 ---
 <Layout>
 <header>
     <nav>
-        <ul>
-            <li><a href="/" class={pathname === "/" ? "active" : ""}>Start</a></li>
-            <li><a href="/id" class={pathname === "/id" ? "active" : ""}>ID</a></li>
-            <li><a href="/questions" class={pathname === "/questions" ? "active" : ""}>spørgeskema</a></li>
-            <li><a href="/jailbreak" class={pathname === "/jailbreak" ? "active" : ""}>Jailbreak</a></li>
-            <li><a href="/refleksion" class={pathname === "/refleksion" ? "active" : ""}>refleksion</a></li>
-            <li><a href="/grupperefleksion" class={pathname === "/grupperefleksion" ? "active" : ""}>grupperefleksion</a></li>
-            <li><a href="/afslut" class={pathname === "/afslut" ? "active" : ""}>Afslutning</a></li>
+        <ul id="menu">
+        
         </ul>
     </nav>
 </header>
 </Layout>
 
 <style>
-    header{
+    :global(header){
         width: 100%;
         height: 80px;
         background-color: #D9DDFE;
@@ -30,7 +25,7 @@ const {pathname} = Astro.url;
 
 
     }
-    nav ul{
+    :global(nav ul){
         display: flex;
         gap: 30px;
         margin: 0;
@@ -38,12 +33,56 @@ const {pathname} = Astro.url;
   list-style: none;
     }
     
-a{
+:global(a){
     text-decoration: none;
     text-transform: uppercase;
 }
 
-    nav a.active{
+    :global(nav a.active){
         border-bottom: 1px solid #333;
     }
 </style>
+
+<script>
+
+    
+  const allPages = [
+  { path: "/", label: "Start" },
+  { path: "/id", label: "ID" },
+  { path: "/questions", label: "Spørgeskema" },
+  { path: "/jailbreak", label: "Jailbreak" },
+  { path: "/refleksion", label: "Refleksion" },
+  { path: "/grupperefleksion", label: "Grupperefleksion" },
+  { path: "/afslut", label: "Afslutning" },
+];
+
+const menu = document.getElementById("menu") as HTMLUListElement | null;
+
+const currentPage = window.location.pathname;
+
+// Nulstil visited hvis vi er på forsiden
+if (currentPage === "/") {
+  localStorage.setItem("visitedPages", JSON.stringify(["/"]));
+}
+
+const visited: string[] = JSON.parse(localStorage.getItem("visitedPages") || "[]");
+
+if (!visited.includes(currentPage)) {
+  visited.push(currentPage);
+  localStorage.setItem("visitedPages", JSON.stringify(visited));
+}
+
+if (menu) {
+  allPages.forEach(({ path, label }) => {
+    if (visited.includes(path)) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = path;
+      a.textContent = label;
+      if (path === currentPage) a.classList.add("active");
+      li.appendChild(a);
+      menu.appendChild(li);
+    }
+  });
+}
+</script>

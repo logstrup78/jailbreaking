@@ -3,6 +3,7 @@ dist/
 
 # generated types
 .astro/
+.json
 
 # dependencies
 node_modules/
@@ -25,4 +26,4 @@ pnpm-debug.log*
 
 # json
 
-.json/
+
