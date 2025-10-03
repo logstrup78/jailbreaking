@@ -2,11 +2,40 @@
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 import Layout from "../layouts/Layout.astro"
+import Continue from "../components/Continue.astro"
 ---
 
 <Layout>
 
 <Header current="/refleksion"/>
-    <h1>Refleksionsøvelse</h1>
+<div class="container">
+    <main>    
+<h1>Refleksionsøvelse</h1>
+    <p>
+        Nu skal du bruge en chatbot til at reflektere over dine erfaringer fra øvelsen. Chatbotten stiller dig spørgsmål og hjælper dig med at tænke over, hvad du har lært, og hvordan du forstår AI-modellens muligheder og begrænsninger.
+Din refleksion er ikke en test – der findes ingen rigtige eller forkerte svar.
+Alle svar bliver koblet til dit unikke ID og forbliver anonyme.
+Brug samtalen til at udforske dine tanker frit og nysgerrigt.
+Når du er klar, klikker du på knappen herunder for at åbne refleksionsrummet.
+    </p>
+</main>
+<Continue href="https://bot.writesonic.com/share/bot/4bd084e2-b6ff-4bd4-b0c5-6d5dcb0e6a6a" tekst="Gå til chatbot"/>
+<Continue href="afslut" tekst="Gå videre"/>
+    </div>
 <Footer />
 </Layout>
+
+
+<style>
+     .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    main {
+      padding: 2%;
+      max-width: 800px;
+      margin-bottom: 2rem;
+    } 
+</style>
